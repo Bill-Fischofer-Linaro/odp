@@ -151,7 +151,7 @@ of the specification or other minor changes that do not affect either the
 syntax or semantics of the specification. Such changes in the API specification
 are expected to be rare. Increments to the minor level
 represent the introduction of new APIs or functional capabilities, or changes
-to he specified syntax or functional behavior of APIs and thus may require
+to the specified syntax or functional behavior of APIs and thus may require
 application source code changes. Such changes are well documented in the
 release notes for each revision of the specification. Finally, increments to
 the major level represent significant structural changes that most likely
@@ -247,7 +247,7 @@ polled by ODP _Threads_, or can pass through the _Classifier_ and sorted into
 Queues that represent individual flows. These queues can then be dispatched
 to application threads via the _Scheduler_.
 
-Threads, in term can invoke various ODP APIs to manipulate packet contents
+Threads, in turn can invoke various ODP APIs to manipulate packet contents
 prior to disposing of them. For output processing, packets make by directly
 queued to a PktIO output queue or else they may be handed to the _Traffic
 Manager_ for programmatic _Quality of Service (QoS)_ processing before winding
