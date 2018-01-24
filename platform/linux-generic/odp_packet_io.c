@@ -1779,6 +1779,8 @@ int odp_pktin_recv_mq_tmo(const odp_pktin_queue_t queues[], unsigned num_q,
 		if (odp_unlikely(!started)) {
 			odp_time_t t;
 
+			if (wait > odp_pktin_wait_time(UINT64_MAX / 2))
+				wait /= 2;			
 			t = odp_time_local_from_ns(wait * 1000);
 			started = 1;
 			t1 = odp_time_sum(odp_time_local(), t);
