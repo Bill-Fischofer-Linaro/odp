@@ -927,6 +927,7 @@ static void test_recv_tmo(recv_tmo_mode_e mode)
 	unsigned num_q;
 	int ret;
 	int i;
+	odp_time_t ts1, ts2;
 
 	CU_ASSERT_FATAL(num_ifaces >= 1);
 
@@ -978,8 +979,16 @@ static void test_recv_tmo(recv_tmo_mode_e mode)
 	ret = odp_pktout_send(pktout_queue, pkt_tbl, test_pkt_count);
 	CU_ASSERT_FATAL(ret == test_pkt_count);
 
+retry:
+	ts1 = odp_time_global();
 	ret = recv_packets_tmo(pktio_rx, &pkt_tbl[0], &pkt_seq[0], 1, mode,
 			       odp_pktin_wait_time(UINT64_MAX), 0);
+	ts2 = odp_time_global();
+	if (ret != 1) {
+		printf("ret = %d, timeout = %" PRIu64 " actual = %" PRIu64 "\n",
+		       ret, UINT64_MAX, odp_time_diff_ns(ts2, ts1));
+		goto retry;
+	}
 	CU_ASSERT_FATAL(ret == 1);
 
 	ret = recv_packets_tmo(pktio_rx, &pkt_tbl[1], &pkt_seq[1], 1, mode,
