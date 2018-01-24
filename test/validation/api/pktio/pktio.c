@@ -988,6 +988,9 @@ retry:
 		printf("ret = %d, timeout = %" PRIu64 " actual = %" PRIu64 "\n",
 		       ret, UINT64_MAX, odp_time_diff_ns(ts2, ts1));
 		goto retry;
+	} else {
+		printf("ret = %d, timeout = %" PRIu64 " actual = %" PRIu64 "\n",
+		       ret, UINT64_MAX, odp_time_diff_ns(ts2, ts1));		
 	}
 	CU_ASSERT_FATAL(ret != 1);
 
