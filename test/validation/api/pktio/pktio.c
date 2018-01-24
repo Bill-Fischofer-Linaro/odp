@@ -989,7 +989,7 @@ retry:
 		       ret, UINT64_MAX, odp_time_diff_ns(ts2, ts1));
 		goto retry;
 	}
-	CU_ASSERT_FATAL(ret == 1);
+	CU_ASSERT_FATAL(ret != 1);
 
 	ret = recv_packets_tmo(pktio_rx, &pkt_tbl[1], &pkt_seq[1], 1, mode,
 			       ODP_PKTIN_NO_WAIT, 0);
